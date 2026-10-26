@@ -28,27 +28,22 @@ const allowedOrigins = [
   'http://localhost:5173',
 ];
 
-// CORS configuration — must be before API routes
+app.set('trust proxy', 1);
+
+app.use(helmet());
 app.use(
   cors({
-    origin: (origin, callback) => {
-      // Allow requests without an Origin header (e.g. Postman)
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
-
-      return callback(
-        new Error(`CORS blocked this origin: ${origin}`)
-      );
-    },
+    origin: [
+      'https://lib-hub-gamma.vercel.app',
+      'http://localhost:5173',
+    ],
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
+
 // Security and request middleware
-app.use(helmet());
+
 app.use(express.json({ limit: '1mb' }));
 app.use(cookieParser());
 
