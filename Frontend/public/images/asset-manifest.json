@@ -1,0 +1,45 @@
+{
+  "library-hero.svg": {
+    "kind": "hero illustration",
+    "license": "Original LibHub vector artwork",
+    "alt": "Stylized library shelf and reader"
+  },
+  "cover-1.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 1"
+  },
+  "cover-2.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 2"
+  },
+  "cover-3.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 3"
+  },
+  "cover-4.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 4"
+  },
+  "cover-5.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 5"
+  },
+  "cover-6.svg": {
+    "kind": "book cover placeholder",
+    "license": "Original LibHub vector artwork",
+    "alt": "Decorative book cover 6"
+  },
+  "avatar-admin.svg": {
+    "kind": "avatar fallback",
+    "license": "Original LibHub vector artwork"
+  },
+  "avatar-member.svg": {
+    "kind": "avatar fallback",
+    "license": "Original LibHub vector artwork"
+  }
+}

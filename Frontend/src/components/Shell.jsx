@@ -1,0 +1,12 @@
+
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { BookOpen, LayoutDashboard, LibraryBig, Users, ArrowLeftRight, ChartNoAxesCombined, LogOut, Menu, X, Bookmark, Wallet } from 'lucide-react';
+import { useState } from 'react';
+import { api } from '../services/api';
+const nav=[['/dashboard','Overview',LayoutDashboard],['/catalog','Book catalog',LibraryBig],['/books','Manage books',BookOpen],['/members','Members',Users],['/loans','Loans',ArrowLeftRight],['/reservations','Reservations',Bookmark],['/fines','Fines',Wallet],['/reports','Reports',ChartNoAxesCombined]];
+export default function Shell({ user, setUser }) {
+ const [open,setOpen]=useState(false);const navigate=useNavigate();
+ async function logout(){try{await api.post('/auth/logout')}finally{setUser(null);navigate('/login')}}
+ const staff=user?.role==='admin'||user?.role==='librarian';
+ return <div className="app-shell"><aside className={`sidebar ${open?'mobile-open':''}`}><div className="brand"><span className="brand-mark"><BookOpen size={22}/></span><span>LibHub<small>SMART LIBRARY</small></span><button className="mobile-close" onClick={()=>setOpen(false)} aria-label="Close menu"><X/></button></div><p className="nav-label">WORKSPACE</p>{nav.filter(([path])=>staff||['/dashboard','/catalog','/loans','/reservations','/fines'].includes(path)).map(([path,label,Icon])=><NavLink key={path} to={path} onClick={()=>setOpen(false)} className={({isActive})=>`nav-link ${isActive?'active':''}`}><Icon size={18}/>{label}</NavLink>)}<div className="sidebar-bottom"><div className="profile-mini"><img src={user?.avatar||'/images/avatar-member.svg'} alt="Profile avatar"/><span><b>{user?.name||'Library member'}</b><small>{user?.role||'member'}</small></span></div><button className="nav-link logout" onClick={logout}><LogOut size={18}/>Sign out</button></div></aside><div className="main-area"><header className="topbar"><button className="mobile-menu" onClick={()=>setOpen(true)} aria-label="Open menu"><Menu/></button><div className="topbar-title">Your library, in one place</div><div className="topbar-right"><span className="status-dot"/> <span>Library workspace</span><img src={user?.avatar||'/images/avatar-member.svg'} alt="Your avatar"/></div></header><main className="page-content"><Outlet context={{user}}/></main><footer className="footer">© {new Date().getFullYear()} LibHub · Read more. Manage smarter.</footer></div></div>;
+}
