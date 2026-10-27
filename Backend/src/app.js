@@ -24,7 +24,7 @@ const app = express();
 
 // Allowed frontend origins
 const allowedOrigins = [
-  'https://lib-hub-gamma.vercel.app',
+  'https://libhub-user.vercel.app',
   'http://localhost:5173',
 ];
 
@@ -34,7 +34,7 @@ app.use(helmet());
 app.use(
   cors({
     origin: [
-      'https://lib-hub-gamma.vercel.app',
+      'https://libhub-user.vercel.app',
       'http://localhost:5173',
     ],
     credentials: true,
